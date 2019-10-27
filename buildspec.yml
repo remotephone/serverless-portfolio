@@ -5,7 +5,7 @@ phases:
       nodejs: 8
   build:
     commands:
-      - echo "Nothing to do yet"
+      - echo "Nothing to do yet, but this works"
 artifacts:
   files:
     - index.html

@@ -1,6 +1,6 @@
 # remotephone's remoteportfolio
 
-Using AWS and React to build a personal portfoli.
+Using AWS and React to build a personal portfolio. I am following the tutorial at acloud.guru for this one, but some of the material is out of data and I'll put descriptions of what I had to fix in the course_differences folder. 
 
 
 ## Technologies used
@@ -13,13 +13,3 @@ Font Awesome
 Google Fonts
 
 
-
-## Some differences from the course material
-
-Many of the consoles have been updated since this course was originally released. I didn't run into any issues until the CodeBuild example. 
-
-- You cannot specify a runtime in the console, this needs to be specified in the buildspec.yml instead. Here's an example:
-
-~~~
-
-~~~

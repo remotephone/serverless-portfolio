@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>React Demo</title>
+
+        <style media="screen">
+            /* an error up here can affect later stanzas. Debug up if you don't see an error in what's giving you problems
+            I omitted a semicolon in messageBox and it showed up as an error in .error in vs code */
+            .messageBox {
+                border: 1px solid;
+                margin: 1em;
+                padding: 2em;
+            }
+
+            .error {
+                border-color: red;
+                background-color: #eebbbb;
+            }
+            
+            .success {
+                border-color: blue;
+                background-color: #bbbbee;
+            }
+            
+            .hidden {
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <main id="content"></main>
+        <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/react@16.0.0/umd/react.production.min.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/react-dom@16.0.0/umd/react-dom.production.min.js"></script>
+    
+        <script type="text/babel" data-presets="react">
+
+        // class - NameInput is a type of React.Component
+        class NameInput extends React.Component {
+            constructor(props) {
+                //Calls constructor for react components
+                super(props)
+
+                // Object literal, dictionary or hash
+                this.state = {
+                    message: {
+                        type: undefined,
+                        body: undefined
+                    }
+                }
+                // We need to do this every time we write an event handler
+                this.buttonClicked = this.buttonClicked.bind(this);
+
+            }
+
+            buttonClicked(evt) {
+                let name = this.refs.nameInput.value;
+
+                // click button, get value of field. if looks right set success and greet
+                // else get the type error and give message
+
+                this.setState({
+                    message: {
+                        type: name ? "success" : "error",
+                        body: name ? "Welcome to React, " + name : "You must enter a name!"
+                    }
+                });
+
+            }
+
+            render() {
+
+                let msg = this.state.message;
+
+                return (
+                    <div>
+                        <label> Name: <input ref="nameInput" type="text" /></label>
+
+                        <button onClick={this.buttonClicked}>Click me!</button>
+
+                        <MessageBox type={msg.type} message={msg.body} />
+                    </div>
+                )
+            }
+        }
+
+        class MessageBox extends React.Component {
+            render() {
+                return (
+                    // Some errors I made:
+                    // Omitted the plus. This is a concatentation. messageBox plus either this.props.type or hidden if none given.
+                    // The type in a simple example is on line 43, type="success"
+                    <div className={"messageBox " + (this.props.type || "hidden")}>
+                    {this.props.message}
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<NameInput />, document.getElementById('content'));
+        </script>
+    </body>
+</html>

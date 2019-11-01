@@ -14,4 +14,3 @@ artifacts:
     - styles/*
     - images/*
     - dist/bundle.js
-  

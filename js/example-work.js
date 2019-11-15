@@ -55,5 +55,8 @@ class ExampleWorkBubble extends React.Component {
     }
 }
 
-// Different than python! You can't import anything you don't export!
+// Different than python! You can't import anything you don't export just cause it lives in the same dir
+// Doing two things here - anything that imports ExampleWork gets it
+// You must explicitly ask for ExampleWorkBubble to get it. 
 export default ExampleWork
+export { ExampleWorkBubble };

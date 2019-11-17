@@ -6,6 +6,8 @@ import ExampleWork from './example-work.js';
 const myWork = [
     { 
         'title': "Work Example",
+        'href': "https://example.com",
+        'desc': "filler text uwu",
         'image': {
             'desc': "example screenshot of a project involving code",
             'src': "images/example1.png",
@@ -14,6 +16,8 @@ const myWork = [
     },
     { 
         'title': "Me IRL",
+        'href': "https://example.com",
+        'desc': "filler text uwu",
         'image': {
             'desc': "me irl",
             'src': "images/big-ounce.jpg",
@@ -22,6 +26,8 @@ const myWork = [
     },
     { 
         'title': "Work Example",
+        'href': "https://example.com",
+        'desc': "filler text uwu",
         'image': {
             'desc': "example screenshot of a project involving cats",
             'src': "images/example3.png",

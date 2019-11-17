@@ -36,21 +36,31 @@ const myWork = [
 
 describe("ExampleWork component", () => {
     let component = shallow(<ExampleWork work={myWork}/>)
-
-    it("Should be a 'section' element", () => {
+    // Updated to expect span element instead of section, as we did previously.
+    it("Should be a 'span' element", () => {
 
         console.log(component.debug());
-        expect(component.type()).toEqual('section');
+        expect(component.type()).toEqual('span');
     });
 
     it("Should contain as many children as work examples", () => {
         expect(component.find("ExampleWorkBubble").length).toEqual(myWork.length);
     });
 
+    it("Should allow the modal to open and close", () => {
+        component.instance().openModal();
+        expect(component.instance().state.modalOpen).toBe(true);
+        component.instance().closeModal();
+        expect(component.instance().state.modalOpen).toBe(false);
+
+    }); 
+
 });
 
 describe("ExampleWorkBubble component", () => {
-    let component = shallow(<ExampleWorkBubble example={myWork[1]}/>
+    let mockOpenModalFn = jest.fn();
+
+    let component = shallow(<ExampleWorkBubble example={myWork[1]} openModal={mockOpenModalFn}/>
     )
     // Will return an array. Need to test for single
     let images = component.find("img")
@@ -65,5 +75,11 @@ describe("ExampleWorkBubble component", () => {
 
     it("Should have the image src set correctly", () => {
         expect(images.prop("src")).toEqual(myWork[1].image.src);
+    });
+        
+    it("Should call openModal handler when clicked", () => {
+        // Find element with click handler, by class name
+        component.find(".section__exampleWrapper").simulate("click");
+        expect(mockOpenModalFn).toHaveBeenCalled();
     });
 });

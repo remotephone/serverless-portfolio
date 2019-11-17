@@ -1,6 +1,37 @@
 import React from 'react';
+import ExampleWorkModal from './example-work-modal';
 
 class ExampleWork extends React.Component{
+
+    constructor(props) {
+      super(props);
+      // we need to manage state, Two things, is it open and which one.
+      this.state = {
+        'modalOpen': false,
+        'selectedExample': this.props.work[0]
+      };
+
+      // Gives this function access to our object
+      this.openModal = this.openModal.bind(this);
+      this.closeModal = this.closeModal.bind(this);
+    }
+
+    // When this function is called, state is set, react notices, it updates
+    // modal opens
+
+    openModal(evt, example) {
+      this.setState({
+        'modalOpen': true,
+        'selectExample': example
+      });
+    }
+
+    closeModal(evt, example) {
+      this.setState({
+        'modalOpen': false
+      });
+    }
+
     render() {
         return (
             // class is reserved! can't use it
@@ -13,15 +44,24 @@ class ExampleWork extends React.Component{
             Basically take what I have, do it as many times as I have items in my index, 
             and render that nicely*/
 
+            /* So we slapped the ExampleWorkModal element in here, but we can only return
+            one JSX tag from our render method. We were returning two, so we wrapped everything
+            in a span tag. My tests fail immediately, so see test-wexample-work.js for changes */
+
+            <span>
             <section className="section section--alignCentered section--description">
 
             { this.props.work.map( (example, idx) => {
                 return (
-                    <ExampleWorkBubble example={example} key={idx} />
+                  // Passing the openModal Function as a property.
+                    <ExampleWorkBubble example={example} key={idx} openModal={this.openModal} />
                     )
                 })
-            }
+            };
           </section>
+          
+          <ExampleWorkModal example={this.state.selectedExample} open={this.state.modalOpen} />
+          </span>
           )
     }
 }
@@ -37,7 +77,8 @@ class ExampleWorkBubble extends React.Component {
         return (
             // Extract data for each structure that makes it unique
             //Description of image, image source file, Title of work example.
-            <div className="section__exampleWrapper">
+            // This was broken for a while. onClick needs to exist in tthe div you're affecting. :|
+            <div className="section__exampleWrapper" onClick={ (evt) => this.props.openModal(evt, example) }>
               <div className="section__example">
                 <img alt={ example.image.desc }
                      className="section__exampleImage"

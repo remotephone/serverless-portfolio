@@ -5,6 +5,7 @@ class ExampleWork extends React.Component{
 
     constructor(props) {
       super(props);
+
       // we need to manage state, Two things, is it open and which one.
       this.state = {
         'modalOpen': false,
@@ -22,15 +23,15 @@ class ExampleWork extends React.Component{
     openModal(evt, example) {
       this.setState({
         'modalOpen': true,
-        'selectExample': example
+        'selectedExample': example
       });
-    }
+    };
 
     closeModal(evt, example) {
       this.setState({
         'modalOpen': false
       });
-    }
+    };
 
     render() {
         return (
@@ -54,13 +55,14 @@ class ExampleWork extends React.Component{
             { this.props.work.map( (example, idx) => {
                 return (
                   // Passing the openModal Function as a property.
-                    <ExampleWorkBubble example={example} key={idx} openModal={this.openModal} />
+                    <ExampleWorkBubble example={example} key={idx} 
+                    openModal={this.openModal} />
                     )
                 })
             };
           </section>
           
-          <ExampleWorkModal example={ this.state.selectedExample } open={ this.state.modalOpen } />
+          <ExampleWorkModal example={this.state.selectedExample} open={this.state.modalOpen} closeModal={this.closeModal} />
           </span>
           )
     }

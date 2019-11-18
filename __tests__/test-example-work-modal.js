@@ -31,6 +31,7 @@ describe("ExampleWorkModal, component", () => {
     it("Should link to our project", () => {
         expect(anchors.prop('href')).toEqual(myExample.href)
     });
+
     it("Should have modal class set correctly", () => {
         // expect(element.function("open").function(open-close-paren)).newFunction(openclose);
         // Find my component, check if it has a class, test result of that against toBe
@@ -38,3 +39,4 @@ describe("ExampleWorkModal, component", () => {
         expect(openComponent.find(".background--skyBlue").hasClass("modal--open")).toBe(true);
     });
 });
+

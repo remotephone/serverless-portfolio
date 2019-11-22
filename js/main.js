@@ -5,12 +5,12 @@ import ExampleWork from './example-work.js';
 
 const myWork = [
     { 
-        'title': "Work Example",
-        'href': "https://example.com",
-        'desc': "filler text uwu",
+        'title': "My Personal Blog",
+        'href': "https://remotephone.github.io/",
+        'desc': "See some of the stuff I've been working on, problems I've solved, things that befuddled me, and my thoughts on many things tech.",
         'image': {
-            'desc': "example screenshot of a project involving code",
-            'src': "images/example1.png",
+            'desc': "Blog Screenshot",
+            'src': "images/blog_screenshot.png",
             'comment': ""
         }
     },
